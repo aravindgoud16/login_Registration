@@ -1,0 +1,40 @@
+
+<ion-content>
+    <div style="text-align: center;" *ngIf="!show">
+      <h2>
+        <B><U>LOGIN</U></B>
+      </h2>
+      <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+        <b>Email</b><br />
+        <input type="text" formControlName="email" /><br />
+  
+        <div>
+          <span style="color: red;" *ngIf="loginform.get('email').hasError('required') && loginform.get('email').touched"
+            >Email is required</span
+          >
+          <span style="color: red;" *ngIf="loginform.get('email').hasError('pattern')">invalid</span>
+        </div>
+  
+        <b>password:</b><br />
+        <input type="password" formControlName="password" /><br />
+  
+        <div>
+          <span style="color: red;" *ngIf="loginform.get('password').hasError('pattern')"
+            >must contain 8 characters & one spl and numaric</span
+          >
+        </div>
+  
+        <ion-button type="submit"  [disabled]="!loginform.valid">Login</ion-button>
+        <ion-button [routerLink]="['/']">Register</ion-button>
+      </form>
+    </div>
+    <div *ngIf="show">
+        <h1>
+          thankyou.....@
+          <!-- <h3 [routerLink]="['/']">go to <ion-icon name="home-outline"></ion-icon></h3> -->
+        </h1>
+      </div>
+  </ion-content>
+  
+  <!-- [routerLink]="['/profile']" -->
+  

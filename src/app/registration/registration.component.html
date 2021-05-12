@@ -1,0 +1,48 @@
+<!-- <app-header></app-header> -->
+<ion-content style="color: chartreuse;">
+  <div class="main">
+    <h1 style="text-align: center;"><u>REGISTER FORM</u></h1>
+    <div style="text-align: center;">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <label>
+          First Name*:<br />
+          <input type="text" placeholder="First Name" formControlName="firstName" /> </label
+        ><br />
+
+        <label>
+          Last Name:<br />
+          <input type="text" placeholder="enter Last Name " formControlName="lastName" /> </label
+        ><br />
+
+        <label>
+          Email* :<br />
+          <input type="email" placeholder="enter email" formControlName="email" regexp="" /> </label
+        ><br />
+        <div>
+          <span
+            style="color: red;"
+            *ngIf="profileForm.get('email').hasError('required') && profileForm.get('email').touched"
+            >Email is required</span>
+          <span style="color: red;" *ngIf="profileForm.get('email').hasError('pattern')">invalid</span>
+        </div>
+
+        <label>
+          Password*:<br />
+          <input type="password" placeholder="enter password" formControlName="password" />
+          <!-- <span  style="color: red;" *ngIf="profileForm.get('password').hasError('pattern')">must contain 8 characters ne spl and numaric</span> --> </label
+        ><br />
+        <div>
+          <span style="color: red;" *ngIf="profileForm.get('password').hasError('pattern')"
+            >must contain 8 characters & one spl and numaric</span
+          >
+        </div>
+
+        <!-- <label>
+               Conform Password:<br>
+                <input type="password" formControlName="confirmPassword">
+            </label><br> -->
+        <ion-button [routerLink]="['/login']" type="submit" [disabled]="!profileForm.valid">Submit</ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>
